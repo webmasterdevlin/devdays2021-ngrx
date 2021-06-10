@@ -32,3 +32,33 @@ export const softDeleteHero = createAction(
   "[Hero] softDeleteHero",
   props<{ id: string }>()
 );
+
+export const createHero = createAction(
+  "[Hero] createHero",
+  props<{ hero: Hero }>()
+);
+
+export const createHeroSuccess = createAction(
+  "[Hero] createHeroSuccess",
+  props<{ hero: Hero }>()
+);
+
+export const createHeroFail = createAction(
+  "[Hero] createHeroFail",
+  props<{ error: string }>()
+);
+
+export const updateHero = createAction(
+  "[Hero] updateHero",
+  props<{ hero: Hero }>()
+);
+
+export const updateHeroSuccess = createAction(
+  "[Hero] updateHeroSuccess",
+  props<{ hero: Hero }>()
+);
+
+export const updateHeroFail = createAction(
+  "[Hero] updateHeroFail",
+  props<{ error: string }>()
+);

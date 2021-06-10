@@ -10,6 +10,8 @@ import {
   deleteHero,
   loadHeroes,
   softDeleteHero,
+  createHero,
+  updateHero,
 } from "src/app/store/actions/hero.actions";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
@@ -59,6 +61,14 @@ export class HeroesComponent implements OnInit {
 
   handleNavigateHeroDetail(id: string) {
     this.router.navigateByUrl("/heroes/hero-detail/" + id);
+  }
+
+  handleCreateHero() {
+    this.store.dispatch(createHero({ hero: this.itemForm.value }));
+  }
+
+  handleUpdateHero() {
+    this.store.dispatch(updateHero({ hero: this.editedForm.value }));
   }
 
   private formBuilderInit(): void {

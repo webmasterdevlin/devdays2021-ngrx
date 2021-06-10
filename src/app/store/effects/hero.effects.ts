@@ -40,4 +40,36 @@ export class HeroEffects {
       )
     )
   );
+
+  createHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(heroActions.createHero),
+
+      map((action) => action.hero),
+
+      mergeMap((hero) =>
+        this.heroService.postHero(hero).pipe(
+          map((res) => heroActions.createHeroSuccess({ hero: res })),
+          catchError((err) =>
+            of(heroActions.createHeroFail({ error: err.message }))
+          )
+        )
+      )
+    )
+  );
+
+  updateHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(heroActions.updateHero),
+
+      map((action) => action.hero),
+      
+      mergeMap((hero) =>
+        this.heroService.putHero(hero).pipe(
+          map(() => heroActions.updateHeroSuccess({ hero })),
+          catchError((err) => of(heroActions.updateHeroFail({ error: err })))
+        )
+      )
+    )
+  );
 }

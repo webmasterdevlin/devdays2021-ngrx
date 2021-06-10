@@ -54,5 +54,37 @@ export const heroReducer = createReducer(
   on(HeroActions.softDeleteHero, (state, { id }) => ({
     ...state,
     heroes: state.heroes.filter((h) => h.id !== id),
+  })),
+
+  // save new hero
+  on(HeroActions.createHero, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(HeroActions.createHeroSuccess, (state, { hero }) => ({
+    ...state,
+    heroes: [...state.heroes, hero],
+    isLoading: false,
+  })),
+  on(HeroActions.createHeroFail, (state, { error }) => ({
+    ...state,
+    error,
+    isLoading: false,
+  })),
+
+  // update hero
+  on(HeroActions.updateHero, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(HeroActions.updateHeroSuccess, (state, { hero }) => ({
+    ...state,
+    heroes: state.heroes.map((h) => (h.id === hero.id ? hero : h)),
+    isLoading: false,
+  })),
+  on(HeroActions.updateHeroFail, (state, { error }) => ({
+    ...state,
+    error,
+    isLoading: false,
   }))
 );

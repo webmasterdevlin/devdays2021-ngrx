@@ -17,4 +17,12 @@ export class HeroService {
   deleteHero(id: string): Observable<void> {
     return this.http.delete<void>(`${this.path}/${id}`);
   }
+
+  postHero(createdHero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.path, createdHero);
+  }
+
+  putHero(updatedHero: Hero): Observable<void> {
+    return this.http.put<void>(`${this.path}/${updatedHero.id}`, updatedHero);
+  }
 }
