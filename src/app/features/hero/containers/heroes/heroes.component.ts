@@ -6,7 +6,11 @@ import { Store } from "@ngrx/store";
 import { Hero } from "../../hero.model";
 import { State } from "src/app/store";
 import { selectHeroStore } from "src/app/store/selectors/hero.selectors";
-import { deleteHero, loadHeroes } from "src/app/store/actions/hero.actions";
+import {
+  deleteHero,
+  loadHeroes,
+  softDeleteHero,
+} from "src/app/store/actions/hero.actions";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
 @UntilDestroy()
@@ -47,6 +51,10 @@ export class HeroesComponent implements OnInit {
 
   handleDeleteHero(id: string) {
     this.store.dispatch(deleteHero({ id }));
+  }
+
+  handleSoftDeleteHero(id: string) {
+    this.store.dispatch(softDeleteHero({ id }));
   }
 
   handleNavigateHeroDetail(id: string) {

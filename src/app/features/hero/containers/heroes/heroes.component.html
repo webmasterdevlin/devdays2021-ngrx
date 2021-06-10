@@ -34,6 +34,13 @@
         >
           DELETE
         </button>
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="handleSoftDeleteHero(hero.id)"
+        >
+          SOFT DELETE
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>

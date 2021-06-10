@@ -27,3 +27,8 @@ export const deleteHeroFail = createAction(
   "[Hero] deleteHeroSucess",
   props<{ error: string }>()
 );
+
+export const softDeleteHero = createAction(
+  "[Hero] softDeleteHero",
+  props<{ id: string }>()
+);

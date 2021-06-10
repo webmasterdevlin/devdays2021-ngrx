@@ -4,6 +4,7 @@ import { Store } from "@ngrx/store";
 import { State } from "src/app/store";
 import { selectHeroStore } from "src/app/store/selectors/hero.selectors";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
+import { loadHeroes } from "src/app/store/actions/hero.actions";
 
 @UntilDestroy()
 @Component({
@@ -18,6 +19,10 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStore();
+  }
+
+  handleLoadCharacters() {
+    this.store.dispatch(loadHeroes());
   }
 
   private getStore() {
