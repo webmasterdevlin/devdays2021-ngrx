@@ -24,4 +24,20 @@ export class HeroEffects {
       )
     )
   );
+
+  deleteHero$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(heroActions.deleteHero),
+
+      map((action) => action.id),
+
+      mergeMap((id) =>
+        this.heroService.deleteHero(id).pipe(
+          map(() => heroActions.deleteHeroSuccess({ id })),
+
+          catchError((error) => of(heroActions.deleteHeroFail({ error })))
+        )
+      )
+    )
+  );
 }

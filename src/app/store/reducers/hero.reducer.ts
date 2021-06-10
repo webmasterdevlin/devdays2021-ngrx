@@ -33,5 +33,21 @@ export const heroReducer = createReducer(
     ...state,
     error,
     isLoading: false,
+  })),
+
+  // delete a hero
+  on(HeroActions.deleteHero, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(HeroActions.deleteHeroSuccess, (state, { id }) => ({
+    ...state,
+    heroes: state.heroes.filter((h) => h.id !== id),
+    isLoading: false,
+  })),
+  on(HeroActions.deleteHeroFail, (state, { error }) => ({
+    ...state,
+    error,
+    isLoading: false,
   }))
 );

@@ -6,7 +6,7 @@ import { Store } from "@ngrx/store";
 import { Hero } from "../../hero.model";
 import { State } from "src/app/store";
 import { selectHeroStore } from "src/app/store/selectors/hero.selectors";
-import { loadHeroes } from "src/app/store/actions/hero.actions";
+import { deleteHero, loadHeroes } from "src/app/store/actions/hero.actions";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 
 @UntilDestroy()
@@ -43,6 +43,10 @@ export class HeroesComponent implements OnInit {
         this.heroes = heroes;
         this.isLoading = isLoading;
       });
+  }
+
+  handleDeleteHero(id: string) {
+    this.store.dispatch(deleteHero({ id }));
   }
 
   handleNavigateHeroDetail(id: string) {

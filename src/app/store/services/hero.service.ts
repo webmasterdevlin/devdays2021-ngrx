@@ -13,4 +13,8 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.path);
   }
+
+  deleteHero(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.path}/${id}`);
+  }
 }
