@@ -1,0 +1,31 @@
+<mat-card-content *ngIf="isLoading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</mat-card-content>
+<section>
+  <div
+    style="width: 100%; margin: 5rem 0; min-width: 16rem"
+    *ngFor="let hero of heroes"
+  >
+    <mat-card style="width: auto">
+      <div>
+        <mat-card-header>
+          <mat-card-title
+            >{{ hero.firstName }} {{ hero.lastName }} is
+            {{ hero.knownAs }}</mat-card-title
+          >
+          <mat-card-subtitle>{{ hero.house }}</mat-card-subtitle>
+        </mat-card-header>
+      </div>
+
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="info"
+          (click)="handleNavigateHeroDetail(hero.id)"
+        >
+          DETAIL
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>
